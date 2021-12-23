@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { DetailsList } from "@fluentui/react";
+import styles from "./List.module.css";
+import Map from "../Map/Map";
 
 class List extends Component {
   constructor(props) {
@@ -9,43 +11,36 @@ class List extends Component {
     };
   }
 
-  componentDidMount() {
-    const url =
-      "https://jtsteeg-power-plant-mapper-api.azurewebsites.net/powerplants";
-
-    fetch(url)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        this.setState({
-          powerPlants: data,
-        });
-        console.log(data);
-      })
-      .catch((error) => console.log(error));
-  }
+  //   mapItems() {
+  //     return <Map powerPlants={this.state.powerPlants} />;
+  //   }
 
   render() {
+    //console.log(this.state.powerPlants.map((item) => item.name));
     return (
-      <DetailsList
-        items={this.state.powerPlants}
-        columns={[
-          {
-            name: "id",
-            fieldName: "id",
-            minWidth: 120,
-            maxWidth: 120,
-            isResizable: true,
-          },
-          {
-            name: "name",
-            fieldName: "name",
-            isResizable: true,
-          },
-        ]}
-        setKey="set"
-      />
+      <div className={styles.list}>
+        <DetailsList
+          items={this.props.powerPlants}
+          columns={[
+            {
+              name: "name",
+              fieldName: "name",
+              isResizable: true,
+            },
+            {
+              name: "output: MWH",
+              fieldName: "outputMWH",
+              isResizable: true,
+            },
+            {
+              name: "renewable",
+              fieldName: "renewable",
+              isResizable: true,
+            },
+          ]}
+          setKey="set"
+        />
+      </div>
     );
   }
 }
