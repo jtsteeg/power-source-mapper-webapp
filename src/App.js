@@ -1,8 +1,8 @@
-import React, { useState, Component } from "react";
+import React, { Component } from "react";
 import "./App.css";
 import styles from "./App.module.css";
-import Map from "./Map/Map";
-import List from "./List/List";
+import Map from "./components/Map/Map";
+import List from "./components/List/List";
 
 class App extends Component {
   constructor(props) {
@@ -14,8 +14,6 @@ class App extends Component {
 
   componentDidMount() {
     const url = process.env.REACT_APP_API_ENDPOINT;
-    //const url =
-    //  "https://jtsteeg-power-plant-mapper-api.azurewebsites.net/powerplants";
 
     fetch(url)
       .then((response) => {
@@ -38,7 +36,7 @@ class App extends Component {
         >
           <div className="container-fluid">
             <span className="navbar-brand mb-0 h1">
-              Illinois Power Plant Mapper
+              Illinois Power Source Mapper
             </span>
           </div>
         </nav>

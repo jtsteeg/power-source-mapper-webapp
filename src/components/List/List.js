@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { DetailsList } from "@fluentui/react";
 import styles from "./List.module.css";
-import Map from "../Map/Map";
 
 class List extends Component {
   constructor(props) {
