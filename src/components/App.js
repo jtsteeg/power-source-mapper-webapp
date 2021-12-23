@@ -9,13 +9,13 @@ class App extends Component {
     super(props);
     this.state = {
       powerPlants: [],
-      pushPins: [],
     };
   }
 
   componentDidMount() {
-    const url =
-      "https://jtsteeg-power-plant-mapper-api.azurewebsites.net/powerplants";
+    const url = process.env.REACT_APP_API_ENDPOINT;
+    //const url =
+    //  "https://jtsteeg-power-plant-mapper-api.azurewebsites.net/powerplants";
 
     fetch(url)
       .then((response) => {
@@ -28,26 +28,6 @@ class App extends Component {
       })
       .catch((error) => console.log(error));
   }
-
-  // rendermap(){
-  //   this.state.powerPlants.map((item) => newPin(item));
-
-  // }
-
-  //   function newPin() {
-  //     const pushPin = {
-  //       center: {
-  //         latitude: item.coordinates.lat,
-  //         longitude: item.coordinates.lon,
-  //       },
-  //       options: {
-  //         title: item.name,
-  //         color: "red",
-  //       },
-  //     };
-
-  //     pushPins.push(pushPin);
-  //   }
 
   render() {
     return (
@@ -65,11 +45,9 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              Map
               <Map powerPlants={this.state.powerPlants} />
             </div>
             <div className="col-md-6">
-              list
               <List powerPlants={this.state.powerPlants} />
             </div>
           </div>

@@ -3,10 +3,7 @@ import React from "react";
 import styles from "./Map.module.css";
 
 const Map = (props) => {
-  //   console.log({ powerPlants }.map((item) => item.name));
-
   const pushPins = [];
-  //props.powerPlants.map((item) => newPin(item));
 
   function newPin(item) {
     if (item.renewable === true) {
@@ -38,27 +35,12 @@ const Map = (props) => {
     }
   }
 
-  //   //   const pushPin = {
-  //   //     center: {
-  //   //       latitude: 40.3631,
-  //   //       longitude: -89.3985,
-  //   //     },
-  //   //     options: {
-  //   //       title: "center of illinois",
-  //   //       color: "red",
-  //   //     },
-  //   //   };
-
-  //   //   const pushPins = [pushPin];
-
-  // <p>{props.powerPlants.map((item) => item.name)}</p>;
-
   return (
     <div className={styles.map}>
       {props.powerPlants.map((item) => newPin(item))}
       <BingMapsReact
         pushPins={pushPins}
-        bingMapsKey="AonKxb9laRpOPwoWQJdTC3K1-cRAZCMCdtMYw_yP6mgYOV3-KjDBmB3p7ugp1rn1"
+        bingMapsKey={process.env.REACT_APP_BING_KEY}
         //height="100%"
         mapOptions={{
           navigationBarMode: "square",

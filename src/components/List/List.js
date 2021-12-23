@@ -11,12 +11,7 @@ class List extends Component {
     };
   }
 
-  //   mapItems() {
-  //     return <Map powerPlants={this.state.powerPlants} />;
-  //   }
-
   render() {
-    //console.log(this.state.powerPlants.map((item) => item.name));
     return (
       <div className={styles.list}>
         <DetailsList
