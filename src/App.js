@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import styles from "./App.module.css";
+//import styles from "./App.module.css";
 import Map from "./components/Map/Map";
 import List from "./components/List/List";
 
@@ -32,7 +32,7 @@ class App extends Component {
       <>
         <nav
           className="navbar navbar-dark bg-dark sticky-top"
-          id={styles.navbar}
+          //id={styles.navbar}
         >
           <div className="container-fluid">
             <span className="navbar-brand mb-0 h1">

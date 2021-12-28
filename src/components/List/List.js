@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DetailsList } from "@fluentui/react";
-import styles from "./List.module.css";
+//import styles from "./List.module.css";
 
 class List extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class List extends Component {
 
   render() {
     return (
-      <div className={styles.list}>
+      <div>
         <DetailsList
           items={this.props.powerPlants}
           columns={[

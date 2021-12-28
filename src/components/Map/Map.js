@@ -14,6 +14,7 @@ const Map = (props) => {
         },
         options: {
           title: item.name,
+          subTitle: "MWH output: " + item.outputMWH.toString(),
           color: "green",
           enableClickedStyle: true,
         },
@@ -27,6 +28,7 @@ const Map = (props) => {
         },
         options: {
           title: item.name,
+          subTitle: "MWH output: " + item.outputMWH.toString(),
           color: "red",
           enableClickedStyle: true,
         },
@@ -41,11 +43,9 @@ const Map = (props) => {
       <BingMapsReact
         pushPins={pushPins}
         bingMapsKey={process.env.REACT_APP_BING_KEY}
-        //height="100%"
         mapOptions={{
           navigationBarMode: "square",
         }}
-        //width="100%"
         viewOptions={{
           center: { latitude: 40.36331, longitude: -89.3985 },
           zoom: 7,
