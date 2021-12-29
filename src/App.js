@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import { initializeIcons } from "@fluentui/font-icons-mdl2";
+
 import "./App.css";
-//import styles from "./App.module.css";
 import Map from "./components/Map/Map";
 import List from "./components/List/List";
+
+initializeIcons();
 
 class App extends Component {
   constructor(props) {
@@ -30,17 +33,14 @@ class App extends Component {
   render() {
     return (
       <>
-        <nav
-          className="navbar navbar-dark bg-dark sticky-top"
-          //id={styles.navbar}
-        >
+        <nav className="navbar navbar-dark bg-dark sticky-top">
           <div className="container-fluid">
             <span className="navbar-brand mb-0 h1">
               Illinois Power Source Mapper
             </span>
           </div>
         </nav>
-        <div className="container">
+        <div className="container-fluid">
           <div className="row">
             <div className="col-md-6">
               <Map powerPlants={this.state.powerPlants} />

@@ -11,29 +11,51 @@ class List extends Component {
   }
 
   render() {
+    const transformPlant = (plant) => ({
+      ...plant,
+      fuelsUsed: Object.keys(plant.fuelTypes).join(", "),
+      primaryFuel: Object.keys(plant.fuelTypes).reduce((previous, current) =>
+        plant.fuelTypes[previous] > plant.fuelTypes[current]
+          ? previous
+          : current
+      ),
+    });
+
+    // const items = this.props.powerPlants.map((plant) => transformPlant(plant));
+    // const items = this.props.powerPlants.map(plant => transformPlant(plant));
+    const items = this.props.powerPlants.map(transformPlant);
+
+    const columns = [
+      {
+        name: "Name",
+        fieldName: "name",
+        isResizable: true,
+      },
+      {
+        name: "Output: MWH",
+        fieldName: "outputMWH",
+        isResizable: true,
+      },
+      {
+        name: "Renewable",
+        fieldName: "renewable",
+        isResizable: true,
+      },
+      {
+        name: "Fuels used",
+        fieldName: "fuelsUsed",
+        isResizable: true,
+      },
+      {
+        name: "Primary Fuel",
+        fieldName: "primaryFuel",
+        isResizable: true,
+      },
+    ];
+
     return (
       <div>
-        <DetailsList
-          items={this.props.powerPlants}
-          columns={[
-            {
-              name: "name",
-              fieldName: "name",
-              isResizable: true,
-            },
-            {
-              name: "output: MWH",
-              fieldName: "outputMWH",
-              isResizable: true,
-            },
-            {
-              name: "renewable",
-              fieldName: "renewable",
-              isResizable: true,
-            },
-          ]}
-          setKey="set"
-        />
+        <DetailsList items={items} columns={columns} setKey="set" />
       </div>
     );
   }
