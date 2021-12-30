@@ -47,7 +47,7 @@ class List extends Component {
         isResizable: true,
       },
       {
-        name: "Primary Fuel",
+        name: "Primary fuel",
         fieldName: "primaryFuel",
         isResizable: true,
       },
