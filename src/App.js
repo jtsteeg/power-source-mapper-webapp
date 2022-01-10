@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import { initializeIcons } from "@fluentui/font-icons-mdl2";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import "./App.css";
 import Map from "./components/Map/Map";
 import List from "./components/List/List";
+import About from "./components/About/About";
 
 initializeIcons();
 
@@ -31,24 +33,63 @@ class App extends Component {
   }
 
   render() {
+    const MapPage = () => (
+      <div className="row">
+        <div className="col-md-6">
+          <Map powerPlants={this.state.powerPlants} />
+        </div>
+        <div className="col-md-6">
+          <List powerPlants={this.state.powerPlants} />
+        </div>
+      </div>
+    );
+
     return (
       <>
-        <nav className="navbar navbar-dark bg-dark sticky-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
           <div className="container-fluid">
-            <span className="navbar-brand mb-0 h1">
+            <a className="navbar-brand" href="/">
               Illinois Power Source Mapper
-            </span>
+            </a>
+            <button
+              className="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+              aria-controls="navbarNav"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span className="navbar-toggler-icon"></span>
+            </button>
+            <div className="collapse navbar-collapse" id="navbarNav">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <a className="nav-link" href="/About">
+                    About
+                  </a>
+                </li>
+                <li className="nav-item">
+                  <a
+                    className="nav-link"
+                    href="https://github.com/jtsteeg/Power_Source_Mapper"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Github
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </nav>
         <div className="container-fluid">
-          <div className="row">
-            <div className="col-md-6">
-              <Map powerPlants={this.state.powerPlants} />
-            </div>
-            <div className="col-md-6">
-              <List powerPlants={this.state.powerPlants} />
-            </div>
-          </div>
+          <Router>
+            <Routes>
+              <Route exact path="/" element={<MapPage />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </Router>
         </div>
       </>
     );

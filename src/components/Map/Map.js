@@ -1,48 +1,60 @@
 import BingMapsReact from "bingmaps-react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Map.module.css";
 
 const Map = (props) => {
-  const pushPins = [];
+  const [pushPins, setPushPins] = useState([]);
+  const [mapReady, setMapReady] = useState(false);
 
-  function newPin(item) {
-    if (item.renewable === true) {
-      const pushPin = {
-        center: {
-          latitude: item.coordinates.lat,
-          longitude: item.coordinates.lon,
-        },
-        options: {
-          title: item.name,
-          subTitle: "MWH output: " + item.outputMWH.toString(),
-          color: "green",
-          enableClickedStyle: true,
-        },
-      };
-      pushPins.push(pushPin);
-    } else {
-      const pushPin = {
-        center: {
-          latitude: item.coordinates.lat,
-          longitude: item.coordinates.lon,
-        },
-        options: {
-          title: item.name,
-          subTitle: "MWH output: " + item.outputMWH.toString(),
-          color: "red",
-          enableClickedStyle: true,
-        },
-      };
-      pushPins.push(pushPin);
+  useEffect(() => {
+    if (mapReady) {
+      const tempushPins = [];
+      props.powerPlants.map((item) => newPin(item));
+
+      function newPin(item) {
+        if (item.renewable === true) {
+          const pushPin = {
+            center: {
+              latitude: item.coordinates.lat,
+              longitude: item.coordinates.lon,
+            },
+            options: {
+              title: item.name,
+              subTitle: "MWH output: " + item.outputMWH.toString(),
+              color: "green",
+              enableClickedStyle: true,
+            },
+          };
+          tempushPins.push(pushPin);
+        } else {
+          const pushPin = {
+            center: {
+              latitude: item.coordinates.lat,
+              longitude: item.coordinates.lon,
+            },
+            options: {
+              title: item.name,
+              subTitle: "MWH output: " + item.outputMWH.toString(),
+              color: "red",
+              enableClickedStyle: true,
+            },
+          };
+          tempushPins.push(pushPin);
+        }
+      }
+
+      setPushPins(tempushPins);
     }
-  }
+  }, [mapReady, props.powerPlants]);
 
   return (
     <div className={styles.map}>
-      {props.powerPlants.map((item) => newPin(item))}
       <BingMapsReact
-        pushPins={pushPins}
+        onMapReady={({ map }) => {
+          setMapReady(true);
+        }}
         bingMapsKey={process.env.REACT_APP_BING_KEY}
+        pushPins={pushPins}
         mapOptions={{
           navigationBarMode: "square",
         }}

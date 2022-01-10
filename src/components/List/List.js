@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { DetailsList } from "@fluentui/react";
-//import styles from "./List.module.css";
 
 class List extends Component {
   constructor(props) {
@@ -21,8 +20,6 @@ class List extends Component {
       ),
     });
 
-    // const items = this.props.powerPlants.map((plant) => transformPlant(plant));
-    // const items = this.props.powerPlants.map(plant => transformPlant(plant));
     const items = this.props.powerPlants.map(transformPlant);
 
     const columns = [
