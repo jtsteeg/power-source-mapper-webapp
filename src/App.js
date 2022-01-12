@@ -65,7 +65,7 @@ class App extends Component {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="/About">
+                  <a className="nav-link" href="/About" target="_blank">
                     About
                   </a>
                 </li>
